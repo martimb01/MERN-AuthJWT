@@ -1,4 +1,5 @@
-const express = require("express")
+import express from 'express'
+import connectToDB from './db'
 require('dotenv').config()
 
 
@@ -11,5 +12,5 @@ app.use(express.json())
 const port = process.env.PORT || 3000
 app.listen(port, () => {
     console.log('Server listening on port: ' + port )
-    console.log('Testing typescript compiler')
+    connectToDB()
 })

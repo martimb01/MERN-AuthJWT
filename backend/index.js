@@ -1,12 +1,17 @@
 "use strict";
-const express = require("express");
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const db_1 = __importDefault(require("./db"));
 require('dotenv').config();
 // setting up express app
-const app = express();
-app.use(express.json());
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
 //Server setup
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log('Server listening on port: ' + port);
-    console.log('Testing typescript compiler');
+    (0, db_1.default)();
 });
