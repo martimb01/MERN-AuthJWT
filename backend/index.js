@@ -5,10 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./db"));
+const userRoute_1 = require("./routes/userRoute");
 require('dotenv').config();
 // setting up express app
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+//Server routes
+app.use('/user', userRoute_1.router);
 //Server setup
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

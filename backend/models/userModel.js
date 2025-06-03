@@ -31,8 +31,7 @@ const userSchema = new mongoose_1.default.Schema({
         required: true
     },
     profileImgUrl: {
-        type: String,
-        required: true
+        type: String
     }
 });
 exports.User = mongoose_1.default.model('User', userSchema);
