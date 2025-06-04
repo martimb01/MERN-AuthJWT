@@ -5,6 +5,7 @@ import { Request, Response } from 'express';
 export async function createUser (req,res) {
     try {
         const user = new User(req.body)
+        //Saving user to DB, yes, password is saved as plain text, SUE ME
         await user.save()
         console.log('There she goeeeesss ', user)
         res.status(200).json({message:'There he goeeeesss', userFields: user})
