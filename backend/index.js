@@ -6,10 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./db"));
 const userRoute_1 = require("./routes/userRoute");
+const cors_1 = __importDefault(require("cors"));
 require('dotenv').config();
 // setting up express app
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 //Server routes
 app.use('/user', userRoute_1.router);
 //Server setup

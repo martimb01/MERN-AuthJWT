@@ -16,6 +16,7 @@ function createUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const user = new userModel_1.User(req.body);
+            //Saving user to DB, yes, password is saved as plain text, SUE ME
             yield user.save();
             console.log('There she goeeeesss ', user);
             res.status(200).json({ message: 'There he goeeeesss', userFields: user });

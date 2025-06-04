@@ -1,4 +1,5 @@
 import { useState } from "react"
+import axios from 'axios'
 
 export default function RegisterForm() {
     const [inputs, setInputs] = useState({
@@ -8,18 +9,40 @@ export default function RegisterForm() {
         firstName:"",
         lastName:"",
         email:"",
-        dateOfBirth: undefined
+        dateOfBirth: ''
         })
 
+    
+    //Handle user input
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name;
         const value = e.target.value;
         setInputs({...inputs, [name]: value})
+        console.log(e)
+    }
+    //Handle submit (registration)
+    const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try {
+            await axios.post('http://localhost:4000/user/register', inputs)
+             .then(function (response) {
+                console.log(response.data)
+             })
+             .catch(function (error) {
+                console.log("Did not work! (logging on browser console)")
+                console.log(error)
+             })
+            
+        } catch (error) {
+            console.log("Axios request did not work!")
+            console.error(error)
+        }
+        
     }
 
     return(
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Username</label>
                 <br />
                 <input 
@@ -82,9 +105,10 @@ export default function RegisterForm() {
                     value={inputs.dateOfBirth}
                     onChange={handleChange}
                  />
-                
-                 
+                 <br />
+                <button type="submit">Register!</button>
             </form>
         </>
     )
 }
+

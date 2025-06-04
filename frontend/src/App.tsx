@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
-import RegisterForm from './pages/RegisterForm.tsx'
-import LandingPage from './pages/LandingPage.tsx'
+import RegisterForm from './pages/RegisterForm'
+import LandingPage from './pages/LandingPage'
 
-function App() {
+export default function App() {
   return (
     <Routes>
       <Route path='/' element={<LandingPage />} />
@@ -11,4 +11,4 @@ function App() {
   )
 }
 
-export default App
+
