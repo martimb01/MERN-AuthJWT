@@ -1,7 +1,9 @@
 import { useState } from "react"
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
 export default function RegisterForm() {
+    const nav = useNavigate()
     const [inputs, setInputs] = useState({
         username: "",
         password:"",
@@ -27,6 +29,7 @@ export default function RegisterForm() {
             await axios.post('http://localhost:4000/user/register', inputs)
              .then(function (response) {
                 console.log(response.data)
+                setTimeout(() => (nav('/')), 2000)
              })
              .catch(function (error) {
                 console.log("Did not work! (logging on browser console)")
