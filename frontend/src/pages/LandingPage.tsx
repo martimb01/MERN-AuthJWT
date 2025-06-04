@@ -21,6 +21,7 @@ export default function LandingPage() {
                        .then(function (response){
                         console.log('Axios logIn post request worked!')
                         console.log(response.data)
+                        setTimeout(() =>{nav('/homepage')}, 2000)
                        }) 
                        .catch(function (error){
                         console.log("Axios post request worked but something went wrong in the logIn backend")

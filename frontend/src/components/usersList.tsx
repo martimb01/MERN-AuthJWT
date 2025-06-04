@@ -7,7 +7,7 @@ interface UserI {
     lastName:string
 }
 
-export default function usersList () {
+export default function UsersList () {
     const [usersArray, setUsersArray] = useState<UserI[]>([])
 
     const fetchAllUsers = async () => {
@@ -33,7 +33,7 @@ export default function usersList () {
     } ,[])
     return (
         <>
-        {usersArray.map((user, index) => {
+        {usersArray.reverse().map((user, index) => {
             return (
                 <li key={index}>
                     {user.firstName}{user.lastName}
