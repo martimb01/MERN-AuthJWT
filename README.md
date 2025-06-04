@@ -1,1 +1,1 @@
-# MERN-AuthJWT
+# MERN-Chatroom
