@@ -10,8 +10,8 @@ export async function createUser (req,res) {
         console.log('There she goeeeesss ', user)
         res.status(200).json({message:'There he goeeeesss', userFields: user})
     } catch (error) {
-        console.error(`Something's fucked my guy`)
-        res.status(500).json({ error: 'Failed to register user' })
+        console.error(`createUser controller did not work`)
+        res.status(500).json({ error: 'createUser controller did not work'})
     }
 }
 
@@ -30,6 +30,18 @@ export async function loginUser (req, res) {
         }
         res.status(401).json({message:'Password is incorrect!'})
     } catch (error) {
-        res.status(401).json({message:`Something's broke on the controller!`})
+        console.error(`createUser controller did not work`)
+        res.status(401).json({message:`loginUser controller did not work`})
+    }
+}
+
+export async function getAllUsers (req,res) {
+    try {
+        const users = await User.find({})
+        res.status(200).json({message:'Heres all users', users})
+        return
+    } catch (error) {
+        console.error(`createUser controller did not work`)
+        res.status(500).json({error:'getAllUsers controller did not work'})
     }
 }

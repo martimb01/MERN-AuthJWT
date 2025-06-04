@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = createUser;
 exports.loginUser = loginUser;
+exports.getAllUsers = getAllUsers;
 const userModel_1 = require("../models/userModel");
 function createUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -22,8 +23,8 @@ function createUser(req, res) {
             res.status(200).json({ message: 'There he goeeeesss', userFields: user });
         }
         catch (error) {
-            console.error(`Something's fucked my guy`);
-            res.status(500).json({ error: 'Failed to register user' });
+            console.error(`createUser controller did not work`);
+            res.status(500).json({ error: 'createUser controller did not work' });
         }
     });
 }
@@ -44,7 +45,21 @@ function loginUser(req, res) {
             res.status(401).json({ message: 'Password is incorrect!' });
         }
         catch (error) {
-            res.status(401).json({ message: `Something's broke on the controller!` });
+            console.error(`createUser controller did not work`);
+            res.status(401).json({ message: `loginUser controller did not work` });
+        }
+    });
+}
+function getAllUsers(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const users = yield userModel_1.User.find({});
+            res.status(200).json({ message: 'Heres all users', users });
+            return;
+        }
+        catch (error) {
+            console.error(`createUser controller did not work`);
+            res.status(500).json({ error: 'getAllUsers controller did not work' });
         }
     });
 }

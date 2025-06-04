@@ -11,3 +11,5 @@ const userController_1 = require("../controllers/userController");
 exports.router.post('/register', userController_1.createUser);
 //login an user
 exports.router.post('/login', userController_1.loginUser);
+//get all users
+exports.router.get('/getAll', userController_1.getAllUsers);
