@@ -32,15 +32,16 @@ export default function UsersList () {
         fetchAllUsers()
     } ,[])
     return (
-        <>
-        {usersArray.reverse().map((user, index) => {
+        <ul>
+        {[...usersArray].reverse().map((user, index) => {
             return (
-                <li key={index}>
-                    {user.firstName}{user.lastName}
-                    
-                </li>
+
+                    <li key={index}>
+                        {user.firstName} {user.lastName}
+                        
+                    </li>
             )
         })}
-        </>
+        </ul>
     )
 }

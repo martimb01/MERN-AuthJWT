@@ -25,7 +25,7 @@ export async function loginUser (req, res) {
         }
         //Comparing users password with the password in the req body
         if (user.password === req.body.password) {
-            res.status(200).json({message:'Successful login!'})
+            res.status(200).json({message:'Successful login!', user})
             return
         }
         res.status(401).json({message:'Password is incorrect!'})
