@@ -11,12 +11,13 @@ interface UserI {
 export default function UsersList () {
     const [usersArray, setUsersArray] = useState<UserI[]>([])
     const[isClicked, setIsClicked] = useState(false)
+    const [messageContent, setMessageContent] = useState('')
     const[receiver, setReceiver] = useState<UserI>({
                                                     firstName:'',
                                                     lastName:'',
                                                     _id:''
                                                     })
-    // const [messageContent, setMessageContent] = useState('')
+    
 
     const fetchAllUsers = async () => {
         try {
@@ -36,6 +37,11 @@ export default function UsersList () {
         }
     }
 
+    useEffect(() => {
+        fetchAllUsers()
+    } ,[])
+    
+    //On click turns isClicked true to render the textarea and gets the message receiver data (Name and Id)
     const handleClick = (receiverId: string, firstName: string, lastName:string) => {
         setIsClicked(true)
         setReceiver({
@@ -45,9 +51,11 @@ export default function UsersList () {
         })
     }
 
-    useEffect(() => {
-        fetchAllUsers()
-    } ,[])
+    //Handle textArea input
+    const handleChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+        setMessageContent(e.target.value)
+    }
+
     return (
         <>
             <ul>
@@ -63,7 +71,12 @@ export default function UsersList () {
             </ul>
             
             <h1>Currently messaging {receiver.firstName} {receiver.lastName} with the id {receiver._id}</h1>
-            {isClicked? <textarea></textarea> : ''}
+            {isClicked? <textarea
+                         onChange={handleChange}
+                         name='message'
+                         value={messageContent}
+                         >Write your message here! 
+                         </textarea> : ''}
         </>
     )
 }
