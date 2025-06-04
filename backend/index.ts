@@ -1,6 +1,7 @@
 import express from 'express'
 import connectToDB from './db'
 import {router as userRouter} from './routes/userRoute'
+import {router as messageRouter} from './routes/messageRoute'
 import cors from 'cors'
 require('dotenv').config()
 
@@ -13,6 +14,7 @@ app.use(cors())
 
 //Server routes
 app.use('/user', userRouter)
+app.use('/message', messageRouter)
 
 //Server setup
 const port = process.env.PORT || 3000

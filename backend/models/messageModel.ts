@@ -15,3 +15,5 @@ const messageSchema = new mongoose.Schema({
         ref:'User'
     }
 }, {timestamps: true})
+
+export const Message = mongoose.model('Message', messageSchema)

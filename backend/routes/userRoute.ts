@@ -1,6 +1,5 @@
 import express from 'express'
 export const router = express.Router()
-import {User} from '../models/userModel'
 import { createUser, getAllUsers, loginUser } from '../controllers/userController'
 
 //register an user
