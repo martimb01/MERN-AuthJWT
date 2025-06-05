@@ -8,3 +8,4 @@ const express_1 = __importDefault(require("express"));
 const messageController_1 = require("../controllers/messageController");
 exports.router = express_1.default.Router();
 exports.router.post('/send', messageController_1.sendMessage);
+exports.router.get('/userMessages/:id', messageController_1.getMessageByReceiverId);

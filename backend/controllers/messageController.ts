@@ -29,3 +29,23 @@ export const sendMessage = async (req, res) => {
 
 
 }
+
+export const getMessageByReceiverId = async (req,res) => {
+    try {
+        const receiverId = req.params.id
+        const messages = await Message.find({receiverId: receiverId})
+
+        if(messages.length === 0) {
+            res.status(200).json({message:'No messages for you!'})
+            console.log('messageController get successfull but no messages for this receiverId!')
+            return
+        }  
+        res.status(200).json({message:`Messages fetched successfully!`, messages})
+        console.log('Messages fetched successfully!')
+    } catch (error) {
+        res.status(500).json({message:'Something went wrong with the getMessagesByReceiverId controller!'})
+        console.error(error)
+    }
+
+
+}

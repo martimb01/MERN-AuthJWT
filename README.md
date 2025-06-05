@@ -9,5 +9,7 @@ This project was build in a day and half and theres plenty of improvements that 
 
 4. In UsersList.tsx, both the messageContent and receiver state variables could probably be combined into a single state variable (Not sure, havent thought about it all the way).
 
+5. Getting message by ReceiverId probs shouldnt be done with a path param cause it shows the usersId in the URL request, i did this way to rehash the usage of path params. 
+
 Plenty of other misalleneous impromevents could be done with the proper time and attencion.
 
