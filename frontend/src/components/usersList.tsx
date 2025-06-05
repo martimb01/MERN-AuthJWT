@@ -8,7 +8,8 @@ interface UserI {
     _id:string
 }
 
-export default function UsersList () {
+export default function UsersList ({userInfo}:any) {
+    const userData = userInfo
     const [usersArray, setUsersArray] = useState<UserI[]>([])
     const[isClicked, setIsClicked] = useState(false)
     const [messageContent, setMessageContent] = useState('')
@@ -39,6 +40,7 @@ export default function UsersList () {
 
     useEffect(() => {
         fetchAllUsers()
+        console.log("Prop sent down by the heavens!", userData)
     } ,[])
     
     //On click turns isClicked true to render the textarea and gets the message receiver data (Name and Id)
@@ -54,15 +56,42 @@ export default function UsersList () {
     //Handle textArea input
     const handleChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
         setMessageContent(e.target.value)
+        console.log(messageContent)
+    }
+
+    //Handle form (message) submition
+    const handleSubmit = async (e:React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try {
+            await axios
+            .post('http://localhost:4000/message/send',{
+                senderId: userData._id,
+                content: messageContent,
+                receiver: receiver._id
+            })
+            .then(function (response){
+                console.log('Axios message post request worked!')
+                console.log(response.data)
+            })
+            .catch(function(error){
+                console.log('Axios message post request worked, but something went wrong in the backend')
+                console.log(error)
+            })
+        } catch (error) {
+            console.log('Axios message post request did not work!')
+            console.error(error)
+        }
     }
 
     return (
         <>
             <ul>
-            {[...usersArray].reverse().map((user) => {
+            {[...usersArray].reverse().map((user, index) => {
                 return (
                         <>
-                            <li onClick={() => handleClick(user._id, user.firstName, user.lastName)} key={user._id}>
+                            <li onClick={() => handleClick(user._id, user.firstName, user.lastName)} 
+                                key={index}
+                                style={{cursor:"pointer"}}>
                                 {user.firstName} {user.lastName} 
                             </li>
                         </> 
@@ -71,12 +100,17 @@ export default function UsersList () {
             </ul>
             
             <h1>Currently messaging {receiver.firstName} {receiver.lastName} with the id {receiver._id}</h1>
-            {isClicked? <textarea
-                         onChange={handleChange}
-                         name='message'
-                         value={messageContent}
-                         >Write your message here! 
-                         </textarea> : ''}
+            {isClicked? <form onSubmit={handleSubmit}>
+                            <textarea
+                                onChange={handleChange}
+                                name='message'
+                                value={messageContent}
+                                >Write your message here! 
+                            </textarea>
+                            <br />
+                            <button type='submit'>Send!</button>
+                         </form>
+                       : ''}
         </>
     )
 }

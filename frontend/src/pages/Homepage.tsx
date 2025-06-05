@@ -12,7 +12,7 @@ export default function Homepage() {
         <>
         <h1>Welcome back, {userData.firstName} {userData.lastName}</h1>
         <h1>Select what user you want to message: </h1>
-        <UsersList />
+        <UsersList userInfo = {userData}/>
         </>
     )
 }
