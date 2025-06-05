@@ -1,8 +1,16 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 
-export default function MessagesList({receiverId = ''}) {
-    const [messages, setMessages] = useState()
+type Message = {
+    senderId: string,
+    senderFirstName: string,
+    senderLastName:string,
+    receiverId: string,
+    content: string
+}
+
+export default function MessagesList({receiverId = ''}: any) {
+    const [messages, setMessages] = useState<Message[]>()
     const fetchUserMessages = async() =>{
         const id = receiverId;
         try {
@@ -29,13 +37,15 @@ export default function MessagesList({receiverId = ''}) {
 
     return (
         <>
-            {/* <h1>Your messages:</h1>
-            {messages ? messages.reverse().map((message) => {
-                <li>
-                    <h3>From: {message.senderFirstName} {message.senderLastName}</h3>
-                    <p>{message.content}</p>
-                </li>
-            }) : '' } */}
+            <h1>Your messages:</h1>
+            {messages ? [...messages].reverse().map((message) => {
+                return (
+                    <li key={message.senderId + message.content}>
+                        <h3>From: {message.senderFirstName} {message.senderLastName}</h3>
+                        <p>{message.content}</p>
+                    </li>
+                )
+            }) : <h3>No messages yet!</h3>}
         </>
     )
 
