@@ -49,7 +49,7 @@ export default function UsersList ({userInfo}:any) {
         setReceiver({
             firstName: firstName,
             lastName: lastName,
-            _id:receiverId
+            _id:receiverId,
         })
     }
 
@@ -66,8 +66,10 @@ export default function UsersList ({userInfo}:any) {
             await axios
             .post('http://localhost:4000/message/send',{
                 senderId: userData._id,
+                senderFirstName: userData.firstName,
+                senderLastName: userData.lastName,
                 content: messageContent,
-                receiver: receiver._id
+                receiverId: receiver._id
             })
             .then(function (response){
                 console.log('Axios message post request worked!')

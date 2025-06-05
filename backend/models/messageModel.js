@@ -12,11 +12,21 @@ const messageSchema = new mongoose_1.default.Schema({
     },
     senderId: {
         type: mongoose_1.default.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     receiverId: {
         type: mongoose_1.default.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
+    },
+    senderFirstName: {
+        type: String,
+        required: true
+    },
+    senderLastName: {
+        type: String,
+        required: true
     }
 }, { timestamps: true });
 exports.Message = mongoose_1.default.model('Message', messageSchema);

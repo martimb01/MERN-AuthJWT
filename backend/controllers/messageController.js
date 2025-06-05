@@ -13,19 +13,23 @@ exports.sendMessage = void 0;
 const messageModel_1 = require("../models/messageModel");
 const sendMessage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const sender = req.body.senderId;
-        const receiver = req.body.receiverId;
+        const senderId = req.body.senderId;
+        const senderFirstName = req.body.senderFirstName;
+        const senderLastName = req.body.senderLastName;
+        const receiverId = req.body.receiverId;
         const content = req.body.content;
         const message = new messageModel_1.Message({
-            senderId: sender,
-            receiverId: receiver,
-            content: content
+            senderId,
+            receiverId,
+            content,
+            senderFirstName,
+            senderLastName
         });
         yield message.save();
         res.status(200).json({ info: 'Message created!', message });
     }
     catch (error) {
-        res.status(500).json({ message: 'message controler get didnt work!', error });
+        res.status(500).json({ message: 'message controler post didnt work!', error });
     }
 });
 exports.sendMessage = sendMessage;
