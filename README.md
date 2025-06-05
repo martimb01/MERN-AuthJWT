@@ -8,6 +8,7 @@ This project was build in a day and half and theres plenty of improvements that 
 3. The message sender first and last name should be derived from their _id, and not passed along as their own variable as they are.
 
 4. In UsersList.tsx, both the messageContent and receiver state variables could probably be combined into a single state variable (Not sure, havent thought about it all the way).
+In the MessageList.tsx, instead of using 3 props(receiver Id, first and last name) i could just use the receiverId, but whatever.
 
 5. Getting message by ReceiverId probs shouldnt be done with a path param cause it shows the usersId in the URL request, i did this way to rehash the usage of path params. 
 
