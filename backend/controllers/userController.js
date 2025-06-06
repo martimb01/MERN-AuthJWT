@@ -19,8 +19,8 @@ function createUser(req, res) {
             const user = new userModel_1.User(req.body);
             //Saving user to DB, yes, password is saved as plain text, SUE ME
             yield user.save();
-            console.log('There she goeeeesss ', user);
-            res.status(200).json({ message: 'There he goeeeesss', userFields: user });
+            console.log('User created!', user);
+            res.status(200).json({ message: 'User created!', userFields: user });
         }
         catch (error) {
             console.error(`createUser controller did not work`);
